@@ -1,4 +1,4 @@
-#include <stdio.h>
+ #include <stdio.h>
 
 // global variables
 char board[3][3] =
@@ -94,150 +94,31 @@ int check_board_is_full()
     }
 }
 
-// This Function Checks Win Condition
-
-int column()
-{
-    // for column
-    if (board[0][0] != ' ' && board[0][0] == player_1_symbol &&
-        board[0][1] != ' ' && board[0][1] == player_1_symbol &&
-        board[0][2] != ' ' && board[0][2] == player_1_symbol)
-    {
-        return 1;
-    }
-    else if (board[1][0] != ' ' && board[1][0] == player_1_symbol &&
-             board[1][1] != ' ' && board[1][1] == player_1_symbol &&
-             board[1][2] != ' ' && board[1][2] == player_1_symbol)
-    {
-        return 1;
-    }
-    else if (board[2][0] != ' ' && board[2][0] == player_1_symbol &&
-             board[2][1] != ' ' && board[2][1] == player_1_symbol &&
-             board[2][2] != ' ' && board[2][2] == player_1_symbol)
-    {
-        return 1;
-    }
-    else if (board[0][0] != ' ' && board[0][0] == player_2_symbol &&
-             board[0][1] != ' ' && board[0][1] == player_2_symbol &&
-             board[0][2] != ' ' && board[0][2] == player_2_symbol)
-    {
-        return 1;
-    }
-    else if (board[1][0] != ' ' && board[1][0] == player_2_symbol &&
-             board[1][1] != ' ' && board[1][1] == player_2_symbol &&
-             board[1][2] != ' ' && board[1][2] == player_2_symbol)
-    {
-        return 1;
-    }
-    else if (board[2][0] != ' ' && board[2][0] == player_2_symbol &&
-             board[2][1] != ' ' && board[2][1] == player_2_symbol &&
-             board[2][2] != ' ' && board[2][2] == player_2_symbol)
-    {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
-}
-
-int row()
+// Check For Winning Condition
+int has_won(char symbol)
 {
     // for row
-    if (board[0][0] != ' ' && board[0][0] == player_1_symbol &&
-        board[1][0] != ' ' && board[1][0] == player_1_symbol &&
-        board[2][0] != ' ' && board[2][0] == player_1_symbol)
-    {
+    if (board[0][0] == symbol && board[0][1] == symbol && board[0][2] == symbol)
         return 1;
-    }
-    else if (board[0][1] != ' ' && board[0][1] == player_1_symbol &&
-             board[1][1] != ' ' && board[1][1] == player_1_symbol &&
-             board[2][1] != ' ' && board[2][1] == player_1_symbol)
-    {
+    if (board[1][0] == symbol && board[1][1] == symbol && board[1][2] == symbol)
         return 1;
-    }
-    else if (board[0][2] != ' ' && board[0][2] == player_1_symbol &&
-             board[1][2] != ' ' && board[1][2] == player_1_symbol &&
-             board[2][2] != ' ' && board[2][2] == player_1_symbol)
-    {
+    if (board[2][0] == symbol && board[2][1] == symbol && board[2][2] == symbol)
         return 1;
-    }
-    else if (board[0][0] != ' ' && board[0][0] == player_2_symbol &&
-             board[1][0] != ' ' && board[1][0] == player_2_symbol &&
-             board[2][0] != ' ' && board[2][0] == player_2_symbol)
-    {
-        return 1;
-    }
-    else if (board[0][1] != ' ' && board[0][1] == player_2_symbol &&
-             board[1][1] != ' ' && board[1][1] == player_2_symbol &&
-             board[2][1] != ' ' && board[2][1] == player_2_symbol)
-    {
-        return 1;
-    }
-    else if (board[0][2] != ' ' && board[0][2] == player_2_symbol &&
-             board[1][2] != ' ' && board[1][2] == player_2_symbol &&
-             board[2][2] != ' ' && board[2][2] == player_2_symbol)
-    {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
-}
 
-int l_to_r_diagonal()
-{
-    // for left to right diagonal
-    if (board[0][0] != ' ' && board[0][0] == player_1_symbol &&
-        board[1][1] != ' ' && board[1][1] == player_1_symbol &&
-        board[2][2] != ' ' && board[2][2] == player_1_symbol)
-    {
+    // for column
+    if (board[0][0] == symbol && board[1][0] == symbol && board[2][0] == symbol)
         return 1;
-    }
-    else if (board[0][0] != ' ' && board[0][0] == player_2_symbol &&
-             board[1][1] != ' ' && board[1][1] == player_2_symbol &&
-             board[2][2] != ' ' && board[2][2] == player_2_symbol)
-    {
+    if (board[0][1] == symbol && board[1][1] == symbol && board[2][1] == symbol)
         return 1;
-    }
-    else
-    {
-        return 0;
-    }
-}
+    if (board[0][2] == symbol && board[1][2] == symbol && board[2][2] == symbol)
+        return 1;
 
-int r_to_l_diagonal()
-{
-    // for right to left diagonal
-    if (board[0][2] != ' ' && board[0][2] == player_1_symbol &&
-        board[1][1] != ' ' && board[1][1] == player_1_symbol &&
-        board[2][0] != ' ' && board[2][0] == player_1_symbol)
-    {
+    // for diagonal
+    if (board[0][0] == symbol && board[1][1] == symbol && board[2][2] == symbol)
         return 1;
-    }
-    else if (board[0][2] != ' ' && board[0][2] == player_2_symbol &&
-             board[1][1] != ' ' && board[1][1] == player_2_symbol &&
-             board[2][0] != ' ' && board[2][0] == player_2_symbol)
-    {
+    if (board[0][2] == symbol && board[1][1] == symbol && board[2][0] == symbol)
         return 1;
-    }
-    else
-    {
-        return 0;
-    }
-}
-
-int check_winner()
-{
-    if (row() == 1 || column() == 1 || l_to_r_diagonal() == 1 || r_to_l_diagonal() == 1)
-    {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
+    return 0;
 }
 
 // Main Function
@@ -250,14 +131,29 @@ void main()
     scanf("%s", player_1_name);
     printf("Enter Player1 Symbol(O or X): ");
     scanf(" %c", &player_1_symbol);
+
+    while(player_1_symbol != 'X' && player_1_symbol != 'O')
+    {
+        printf("You Entered Wrong symbol please Enter O or X only!");
+        printf("\nEnter Player1 Symbol(O or X): ");
+        scanf(" %c", &player_1_symbol);
+    }
     printf("Enter Player2 Name: ");
     scanf(" %s", player_2_name);
     printf("Enter Player2 Symbol(O or X): ");
     scanf(" %c", &player_2_symbol);
+
+    while(player_2_symbol != 'X' && player_2_symbol != 'O')
+    {
+        printf("You Entered Wrong symbol please Enter O or X only!");
+        printf("\nEnter Player2 Symbol(O or X): ");
+        scanf(" %c", &player_2_symbol);
+    }
+
     while (player_2_symbol == player_1_symbol)
     {
         printf("You Entered Same symbol as Player_1 so try different one!");
-        printf("Enter Player2 Symbol(O or X): ");
+        printf("\nEnter Player2 Symbol(O or X): ");
         scanf(" %c", &player_2_symbol);
     }
 
@@ -287,11 +183,21 @@ void main()
                 if (turn == 1)
                 {
                     board[i][j] = player_1_symbol;
+                    if (has_won(player_1_symbol) == 1)
+                    {
+                        printf("Congratulations %s! You Won the Match!", player_1_name);
+                        break;
+                    }
                     turn = 2;
                 }
                 else
                 {
                     board[i][j] = player_2_symbol;
+                    if (has_won(player_2_symbol) == 1)
+                    {
+                        printf("Congratulations %s! You Won the Match!", player_2_name);
+                        break;
+                    }
                     turn = 1;
                 }
             }
@@ -304,31 +210,23 @@ void main()
         {
             printf("Enter Choice between 1 to 9 only!");
         }
-
-        if (check_winner() == 1)
-        {
-            print_board();
-            if (turn == 1)
-            {
-                printf("\nCongratulations %s! You Won!", player_2_name);
-            }
-            else
-            {
-                printf("\nCongratulations %s! You Won!", player_1_name);
-            }
-            break;
-        }
         if (check_board_is_full == 0)
         {
             printf("\nOhh Match Draw!");
         }
     }
 
-    if (check_winner() == 1 || check_board_is_full == 0)
+    if (has_won(player_1_symbol) == 0 && has_won(player_2_symbol) == 0)
+    {
+        printf("\nGame is Draw!!! Try Again!");
+    }
+
+    if (has_won(player_1_symbol || player_2_symbol) == 1 || check_board_is_full == 0)
     {
     }
     else
     {
+        printf("\n");
         print_board();
     }
 }
